@@ -1,22 +1,19 @@
 {
-  "name": "server",
-  "version": "1.0.0",
-  "description": "",
+  "name": "openbiz-form-api",
+  "version": "0.1.0",
+  "description": "Backend service for database migration, storage, and form configurations",
   "main": "dist/index.js",
+  "type": "commonjs",
   "scripts": {
     "dev": "ts-node src/index.ts",
-    "build": "tsc",
     "start": "node dist/index.js",
+    "build": "tsc",
     "db:generate": "drizzle-kit generate",
-    "db:migrate": "drizzle-kit migrate",
     "db:push": "drizzle-kit push",
+    "db:migrate": "drizzle-kit migrate",
     "db:studio": "drizzle-kit studio",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "type": "commonjs",
   "dependencies": {
     "axios": "^1.18.1",
     "cookie-parser": "^1.4.7",
@@ -34,5 +31,7 @@
     "drizzle-kit": "^0.31.10",
     "ts-node": "^10.9.2",
     "typescript": "^6.0.3"
-  }
+  },
+  "author": "Developer",
+  "license": "MIT"
 }

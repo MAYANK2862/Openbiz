@@ -5,4 +5,5 @@ const registrationController_1 = require("../controllers/registrationController"
 const router = (0, express_1.Router)();
 // Route mapping for Udyam registrations submissions
 router.post('/registrations', registrationController_1.createRegistration);
+router.get('/registrations', registrationController_1.getRegistrations);
 exports.default = router;

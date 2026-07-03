@@ -16,8 +16,8 @@ const FIELD_PATTERNS = {
         error: 'Entrepreneur name must be between 2 and 100 letters (spaces allowed).'
     },
     pan: {
-        regex: /^[A-Za-z]{5}[0-9]{4}[A-Za-z]{1}$/,
-        error: 'PAN card format must be: 5 letters, 4 digits, 1 letter (e.g., ABCDE1234F).'
+        regex: /^[A-Za-z]{4,5}[0-9]{4}[A-Za-z]{1}$/,
+        error: 'PAN card format must be: 4-5 letters, 4 digits, 1 letter (e.g., LUFF2862Y).'
     }
 };
 /**

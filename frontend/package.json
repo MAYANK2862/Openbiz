@@ -1,13 +1,14 @@
 {
-  "name": "client",
+  "name": "openbiz-form-web",
+  "version": "1.0.0",
+  "description": "Frontend React SPA for building and rendering dynamic forms",
   "private": true,
-  "version": "0.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
-    "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "lint": "eslint ."
   },
   "dependencies": {
     "@hookform/resolvers": "^5.4.0",
@@ -33,5 +34,7 @@
     "typescript": "~6.0.2",
     "typescript-eslint": "^8.62.0",
     "vite": "^8.1.1"
-  }
+  },
+  "author": "Developer",
+  "license": "MIT"
 }
