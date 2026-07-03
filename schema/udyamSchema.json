@@ -1,0 +1,95 @@
+{
+  "formTitle": "Udyam Registration",
+  "sourceUrl": "https://udyamregistration.gov.in/UdyamRegistration.aspx",
+  "steps": [
+    {
+      "step": 1,
+      "title": "Aadhaar Verification",
+      "scrapedVia": "automated (axios + cheerio) + manual label verification",
+      "fields": [
+        {
+          "id": "aadhaar_number",
+          "sourceId": "ctl00_ContentPlaceHolder1_txtadharno",
+          "label": "Aadhaar Number",
+          "type": "text",
+          "maxLength": 12,
+          "required": true,
+          "validationRegex": "^[0-9]{12}$",
+          "placeholder": "Your Aadhaar No",
+          "regexSource": "inferred (standard Aadhaar format; not exposed client-side by site)"
+        },
+        {
+          "id": "owner_name",
+          "sourceId": "ctl00_ContentPlaceHolder1_txtownername",
+          "label": "Name of Entrepreneur",
+          "type": "text",
+          "maxLength": 100,
+          "required": true,
+          "validationRegex": "^[A-Za-z ]{2,100}$",
+          "placeholder": "Name as per Aadhaar",
+          "regexSource": "inferred"
+        },
+        {
+          "id": "declaration",
+          "sourceId": "ctl00_ContentPlaceHolder1_chkDecarationA",
+          "label": " I, the holder of the above Aadhaar, hereby give my consent to Ministry of MSME, Government of India, for using my Aadhaar number as alloted by UIDAI for Udyam Registration. Ministry of MSME, Government of India, have informed me that my aadhaar data will not be stored/shared.",
+          "type": "checkbox",
+          "required": true
+        }
+      ],
+      "submitButton": {
+        "sourceId": "ctl00_ContentPlaceHolder1_btnValidateAadhaar",
+        "label": "Validate & Generate OTP",
+        "mechanism": "ASP.NET async postback (WebForm_DoPostBackWithOptions), not a standard form submit"
+      },
+      "uiFeedbackElements": {
+        "note": "Site shows inline status/error text near the submit button rather than toasts/modals. Worth replicating this placement pattern in the React rebuild for UX fidelity.",
+        "elements": [
+          { "sourceId": "ctl00_ContentPlaceHolder1_lblmsg", "purpose": "general status message (bold), likely OTP-sent confirmation" },
+          { "sourceId": "ctl00_ContentPlaceHolder1_lblMsg1", "purpose": "primary error message (red, large), likely invalid Aadhaar" },
+          { "sourceId": "ctl00_ContentPlaceHolder1_lblMsg2", "purpose": "secondary error message (red, large), likely OTP mismatch" },
+          { "sourceId": "ctl00_ContentPlaceHolder1_btnNumberofUnit", "purpose": "anchor link (green, bold), appears post-success; possibly links to existing registration lookup - needs live confirmation" }
+        ]
+      }
+    },
+    {
+      "step": 2,
+      "title": "PAN Verification",
+      "scrapedVia": "manual DOM inspection + client-side validator JS review",
+      "fields": [
+        {
+          "id": "type_of_organisation",
+          "sourceId": "ctl00_ContentPlaceHolder1_ddlTypeofOrg",
+          "label": "Type of Organisation",
+          "type": "select",
+          "required": true,
+          "options": "TBD - inspect <option> tags on live site"
+        },
+        {
+          "id": "pan_number",
+          "sourceId": "ctl00_ContentPlaceHolder1_txtPan",
+          "label": "PAN Number",
+          "type": "text",
+          "maxLength": 10,
+          "required": "conditional",
+          "requiredWhen": {
+            "field": "type_of_organisation",
+            "notEquals": "1"
+          },
+          "validationRegex": "^[A-Za-z]{5}[0-9]{4}[A-Za-z]{1}$",
+          "placeholder": "TBD",
+          "regexSource": "given in assignment brief",
+          "conditionalLogicSource": "ClientValidatePan() function, page <script>"
+        }
+      ],
+      "submitButton": {
+        "sourceId": "TBD - inspect live site"
+      },
+      "notes": [
+        "PAN requirement is conditional on organisation type — org type '1' appears exempt (likely Proprietorship, needs confirmation).",
+        "ddlTypeofOrg option values/labels need manual extraction from <select> markup.",
+        "ValidateTurnover() and related fields (txtTotalTurnoverA, rblWhetherGstn) belong to a later step, out of scope for this assignment but noted for completeness."
+      ]
+    }
+  ]
+}

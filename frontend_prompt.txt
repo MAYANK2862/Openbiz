@@ -1,0 +1,19 @@
+Create a premium, modern, and schema-driven multi-step Udyam Registration Form wizard in React (Vite + TypeScript + Tailwind CSS). Follow these guidelines:
+
+1. Folder Structure:
+   Inside `src/`, organize code into:
+   - `src/components/`:
+     * `UdyamRegistrationWizard.tsx`: Controls form step states, navigation, local data caching, and API submissions.
+     * `UdyamInputField.tsx`: Generic, reusable component rendering text inputs, selects, and checkboxes dynamically based on configuration.
+     * `FlowProgressBar.tsx`: Horizontal stepper indicator displaying "Aadhaar", "PAN Verification", and "Review & Submit".
+   - `src/lib/`:
+     * `schema.ts`: Holds Typescript typings and reads layout configurations from a central `udyamSchema.json` file.
+     * `validation.ts`: Builds dynamic Zod validation schemas for Step 1 (Aadhaar & Name) and Step 2 (Organisation Type & PAN).
+
+2. Features & Logic:
+   - **Step 1 (Aadhaar Verification)**: Inputs for Aadhaar Number and Entrepreneur Name. Require a checkbox consent. Once validated via Zod, show an inline mock OTP input box. Only allow navigation to Step 2 if user enters code "123456".
+   - **Step 2 (PAN Verification)**: Select box for Organisation Type and input for PAN.
+     * *Conditional Validation Bugfix*: Ensure the Organisation Type select values match database IDs ('1' for Proprietorship, etc.). Use Zod's `superRefine` so that PAN is mandatory for all organisation types except Proprietorship (where it is completely optional).
+   - **Step 3 (Review & Summary)**: Display a clean, read-only table summary of all entries saved in the wizard's local persistent state (to avoid data loss when fields unmount across steps).
+   - **API Hookup**: On final submit, make a POST request to `http://localhost:3001/api/v1/registrations`. Display a loader spinner during request, a success details card on 201 OK, and red alert banners showing backend validation or duplicate Aadhaar (409) errors on failure.
+   - **Aesthetics**: Implement a high-fidelity government-tech dashboard theme using rich violet/indigo gradients, clean shadows, modern typography (Inter), glassmorphic panels, responsive instructions side-cards, and smooth hover/active micro-animations with a light/dark mode toggle.

@@ -1,0 +1,50 @@
+[
+  {
+    "tag": "input",
+    "id": "ctl00_ContentPlaceHolder1_txtadharno",
+    "name": "ctl00$ContentPlaceHolder1$txtadharno",
+    "type": "text",
+    "placeholder": "Your Aadhaar No",
+    "maxlength": "12",
+    "required": false,
+    "className": "form-control",
+    "label": "Aadhaar No",
+    "validators": []
+  },
+  {
+    "tag": "input",
+    "id": "ctl00_ContentPlaceHolder1_txtownername",
+    "name": "ctl00$ContentPlaceHolder1$txtownername",
+    "type": "text",
+    "placeholder": "Name as per Aadhaar",
+    "maxlength": "100",
+    "required": false,
+    "className": "form-control",
+    "label": "Name of Entrepreneur",
+    "validators": []
+  },
+  {
+    "tag": "input",
+    "id": "ctl00_ContentPlaceHolder1_chkDecarationA",
+    "name": "ctl00$ContentPlaceHolder1$chkDecarationA",
+    "type": "checkbox",
+    "placeholder": null,
+    "maxlength": null,
+    "required": false,
+    "className": null,
+    "label": "declaration",
+    "validators": []
+  },
+  {
+    "tag": "input",
+    "id": "ctl00_ContentPlaceHolder1_btnValidateAadhaar",
+    "name": "ctl00$ContentPlaceHolder1$btnValidateAadhaar",
+    "type": "submit",
+    "placeholder": null,
+    "maxlength": null,
+    "required": false,
+    "className": "btn btn-main btn-round-full",
+    "label": "Aadhaar Validate",
+    "validators": []
+  }
+]
